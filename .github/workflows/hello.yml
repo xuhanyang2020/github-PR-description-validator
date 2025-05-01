@@ -12,5 +12,6 @@ jobs:
 
       - uses: ./
         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           required_fields: "title|description"
           optional_fields: "test|issue|link"

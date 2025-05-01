@@ -2,6 +2,9 @@ name: "Pull request decription fields validator"
 description: "Validate PR decription inputs, to see if required fields are present"
 author: "xuhanyang2020"
 inputs:
+  github_token:
+    description: "GitHub token"
+    required: true
   required_fields:
     description: "Required fields in PR description, separated by vertical bar"
   optional_fields:
