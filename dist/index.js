@@ -27562,8 +27562,11 @@ var exports = __webpack_exports__;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core_1 = __nccwpck_require__(7484);
-const required_fields = (0, core_1.getInput)("required_fields");
-console.log("hello" + required_fields);
+async function run() {
+    const required_fields = (0, core_1.getInput)("required_fields");
+    console.log("hello! " + required_fields);
+}
+run();
 
 })();
 

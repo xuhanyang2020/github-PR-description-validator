@@ -1,5 +1,10 @@
 import { getInput } from "@actions/core"
+import { getOctokit, context } from "@actions/github";
 
-const required_fields = getInput("required_fields")
+async function run() {
+    const required_fields = getInput("required_fields")
 
-console.log("hello" + required_fields)
+    console.log("hello! " + required_fields)
+}
+
+run()
