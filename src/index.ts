@@ -5,7 +5,7 @@ async function run() {
     const required_fields = core.getInput("required_fields")
     console.log("hello! " + required_fields)
 
-    const token = core.getInput("github-token", { required: true });
+    const token = core.getInput("github_token", { required: true });
     const octokit = getOctokit(token);
 
     const payload = context.payload;

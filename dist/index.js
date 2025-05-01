@@ -45,7 +45,7 @@ const github_1 = __nccwpck_require__(3228);
 async function run() {
     const required_fields = core.getInput("required_fields");
     console.log("hello! " + required_fields);
-    const token = core.getInput("github-token", { required: true });
+    const token = core.getInput("github_token", { required: true });
     const octokit = (0, github_1.getOctokit)(token);
     const payload = github_1.context.payload;
     const senderInfo = payload === null || payload === void 0 ? void 0 : payload.sender;
