@@ -11,3 +11,6 @@ jobs:
         uses: actions/checkout@v2
 
       - uses: ./
+        with:
+          required_fields: "title|description"
+          optional_fields: "test|issue|link"
