@@ -2,28 +2,29 @@ import * as core from "@actions/core";
 import { getOctokit, context } from "@actions/github";
 
 export async function run() {
-    const required_fields = core.getInput("required_fields")
-    console.log("hello! " + required_fields)
-
-    const token = core.getInput("github_token", { required: true });
-
-    if (!token || token === "") {
-        throw new Error("GitHub token is required");
-    }
-    
-    const octokit = getOctokit(token);
+    const regexInput = core.getInput("regex");
+    const regex = new RegExp(regexInput);
 
     const payload = context.payload;
 
     const senderInfo = payload?.sender;
     const senderName = senderInfo?.login;
-    const senderType = senderInfo?.type;
 
-    console.log("senderInfo: ", senderInfo);
-    console.log("senderName: ", senderName);
-    console.log("senderType: ", senderType);
+    core.info(`PR created by ${senderName}`)
 
-    core.info(`PR created by ${senderName} (${senderType})`)
+    const is_pull_request = context.payload.action === "opened" && context.payload.pull_request;
+
+    if (!is_pull_request) {
+        throw new Error("This action only works for pull request events");
+    }
+    const pull_request_decrption = context.payload.pull_request?.body ?? ""
+
+    const matches = regex.test(pull_request_decrption); // Test the regex against the description
+    if (matches) {
+        core.info("Pull request description matches the regex.");
+    } else {
+        core.setFailed("Pull request description does not match the required format.");
+    }
 }
 
 if (!process.env.JEST_WORKER_ID) {
