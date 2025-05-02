@@ -1,11 +1,16 @@
 import * as core from "@actions/core";
 import { getOctokit, context } from "@actions/github";
 
-async function run() {
+export async function run() {
     const required_fields = core.getInput("required_fields")
     console.log("hello! " + required_fields)
 
     const token = core.getInput("github_token", { required: true });
+
+    if (!token || token === "") {
+        throw new Error("GitHub token is required");
+    }
+    
     const octokit = getOctokit(token);
 
     const payload = context.payload;
@@ -21,4 +26,6 @@ async function run() {
     core.info(`PR created by ${senderName} (${senderType})`)
 }
 
-run()
+if (!process.env.JEST_WORKER_ID) {
+    run();
+  }
