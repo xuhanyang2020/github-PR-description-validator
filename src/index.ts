@@ -24,6 +24,7 @@ export async function run() {
     if (matches) {
         core.info("Pull request description matches the regex.");
     } else {
+        core.info(`PR description detected ${pull_request_decrption}`)
         core.setFailed("Pull request description does not match the required format.");
     }
 }
