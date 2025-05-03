@@ -53,7 +53,8 @@ async function run() {
     core.info(`PR created by ${senderName}`);
     const is_pull_request = github_1.context.payload.action === "opened" && github_1.context.payload.pull_request;
     if (!is_pull_request) {
-        throw new Error("This action only works for pull request events");
+        core.info("Is not a pull request, skipping");
+        return;
     }
     const pull_request_decrption = (_b = (_a = github_1.context.payload.pull_request) === null || _a === void 0 ? void 0 : _a.body) !== null && _b !== void 0 ? _b : "";
     const matches = regex.test(pull_request_decrption); // Test the regex against the description

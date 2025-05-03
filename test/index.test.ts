@@ -56,13 +56,7 @@ describe("run function", () => {
 
         expect(mockSetFailed).toHaveBeenCalledWith("Pull request description does not match the required format.");
     });
-
-    it("should throw an error if the event is not a pull request", async () => {
-        (context as any).payload.action = "closed";
-
-        await expect(run()).rejects.toThrow("This action only works for pull request events");
-    });
-
+    
     it("should handle missing sender information gracefully", async () => {
         (context as any).payload.sender = undefined;
 

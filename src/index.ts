@@ -15,7 +15,8 @@ export async function run() {
     const is_pull_request = context.payload.action === "opened" && context.payload.pull_request;
 
     if (!is_pull_request) {
-        throw new Error("This action only works for pull request events");
+        core.info("Is not a pull request, skipping");
+        return;
     }
     const pull_request_decrption = context.payload.pull_request?.body ?? ""
 
