@@ -14,4 +14,4 @@ jobs:
       - uses: ./
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          regex: "^.*Title.+Description.+$"
+          regex: "^.*Title[\\s\\S]+Description[\\s\\S]+$"
