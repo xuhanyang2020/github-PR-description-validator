@@ -12,10 +12,10 @@ export async function run() {
 
     core.info(`PR created by ${senderName}`)
 
-    const is_pull_request = context.payload.action === "opened" && context.payload.pull_request;
+    const has_pull_request = context.payload.pull_request?.body !== undefined;
 
-    if (!is_pull_request) {
-        core.info("Is not a pull request, skipping");
+    if (!has_pull_request) {
+        core.setFailed("Is not a pull request, skipping");
         return;
     }
     const pull_request_decrption = context.payload.pull_request?.body ?? ""

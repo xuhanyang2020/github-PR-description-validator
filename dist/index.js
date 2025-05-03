@@ -44,19 +44,19 @@ exports.run = run;
 const core = __importStar(__nccwpck_require__(7484));
 const github_1 = __nccwpck_require__(3228);
 async function run() {
-    var _a, _b;
+    var _a, _b, _c;
     const regexInput = core.getInput("regex");
     const regex = new RegExp(regexInput);
     const payload = github_1.context.payload;
     const senderInfo = payload === null || payload === void 0 ? void 0 : payload.sender;
     const senderName = senderInfo === null || senderInfo === void 0 ? void 0 : senderInfo.login;
     core.info(`PR created by ${senderName}`);
-    const is_pull_request = github_1.context.payload.action === "opened" && github_1.context.payload.pull_request;
-    if (!is_pull_request) {
-        core.info("Is not a pull request, skipping");
+    const has_pull_request = ((_a = github_1.context.payload.pull_request) === null || _a === void 0 ? void 0 : _a.body) !== undefined;
+    if (!has_pull_request) {
+        core.setFailed("Is not a pull request, skipping");
         return;
     }
-    const pull_request_decrption = (_b = (_a = github_1.context.payload.pull_request) === null || _a === void 0 ? void 0 : _a.body) !== null && _b !== void 0 ? _b : "";
+    const pull_request_decrption = (_c = (_b = github_1.context.payload.pull_request) === null || _b === void 0 ? void 0 : _b.body) !== null && _c !== void 0 ? _c : "";
     const matches = regex.test(pull_request_decrption); // Test the regex against the description
     if (matches) {
         core.info("Pull request description matches the regex.");
