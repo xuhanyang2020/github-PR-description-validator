@@ -1,5 +1,5 @@
 import * as core from "@actions/core";
-import { getOctokit, context } from "@actions/github";
+import { context } from "@actions/github";
 
 export async function run() {
     const regexInput = core.getInput("regex");
@@ -12,9 +12,7 @@ export async function run() {
 
     core.info(`PR created by ${senderName}`)
 
-    const has_pull_request = context.payload.pull_request?.body !== undefined;
-
-    if (!has_pull_request) {
+    if (!context.payload.pull_request) {
         core.setFailed("Is not a pull request, skipping");
         return;
     }
@@ -24,7 +22,6 @@ export async function run() {
     if (matches) {
         core.info("Pull request description matches the regex.");
     } else {
-        core.info(`PR description detected ${pull_request_decrption}`)
         core.setFailed("Pull request description does not match the required format.");
     }
 }
