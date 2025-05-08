@@ -24,4 +24,3 @@ jobs:
 
 The `pull_request` event is needed, because it will use its payload.
 You can customize the regex validation based on your requirement.
-
