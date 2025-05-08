@@ -2,7 +2,7 @@
 
 This PR fields validation action can be used to validate if PR decription satisfy the regex that developers provide
 
-[![Build and Test Status](https://github.com/xuhanyang2020/xuhanyang2020/github-PR-description-validator/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/xuhanyang2020/xuhanyang2020/github-PR-description-validator/actions/workflows/build-and-test.yml)
+[![Build and Test Status](https://github.com/xuhanyang2020/github-PR-description-validator/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/xuhanyang2020/github-PR-description-validator/actions/workflows/build-and-test.yml)
 
 ### How to Use
 Create a github action under `.github/workflow` directory in your repository.
