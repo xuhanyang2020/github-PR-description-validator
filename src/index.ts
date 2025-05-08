@@ -1,5 +1,5 @@
 import * as core from "@actions/core";
-import { getOctokit, context } from "@actions/github";
+import { context } from "@actions/github";
 
 export async function run() {
     const regexInput = core.getInput("regex");
@@ -12,10 +12,9 @@ export async function run() {
 
     core.info(`PR created by ${senderName}`)
 
-    const is_pull_request = context.payload.action === "opened" && context.payload.pull_request;
-
-    if (!is_pull_request) {
-        throw new Error("This action only works for pull request events");
+    if (!context.payload.pull_request) {
+        core.setFailed("Is not a pull request, skipping");
+        return;
     }
     const pull_request_decrption = context.payload.pull_request?.body ?? ""
 

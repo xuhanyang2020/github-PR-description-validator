@@ -2,18 +2,9 @@ name: "Pull request decription fields validator"
 description: "Validate PR decription inputs, to see if required fields are present"
 author: "xuhanyang2020"
 inputs:
-  github_token:
-    description: "GitHub token"
+  regex:
+    description: "Regex to match the required fields"
     required: true
-  required_fields:
-    description: "Required fields in PR description, separated by vertical bar"
-  optional_fields:
-    description: "Optional fields in PR description, separated by vertical bar"
-outputs:
-  required_filled:
-    description: "Validation result"
-  option_filled_count:
-    description: "Count of optional fields filled"
 runs:
   using: "node20"
   main: "dist/index.js"
