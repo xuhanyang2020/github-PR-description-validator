@@ -1,0 +1,22 @@
+name: "Basic installation and build checks"
+on:
+  pull_request:
+    types: [opened, synchronize, closed, reopened, edited]
+  push:
+    branches:
+      - main
+
+jobs:
+  check_pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: "npm install"
+        run: npm install
+
+      - name: "npm run build"
+        run: npm run build
+
+      - name: "Run tests"
+        run: npx jest

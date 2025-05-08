@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check PR with regex
-        uses: xuhanyang2020/github-PR-description-validator
+        uses: xuhanyang2020/github-PR-description-validator@PR-regex-v2
         with:
           regex: "^.*Title[\\s\\S]+Description[\\s\\S]+$"
 ```
